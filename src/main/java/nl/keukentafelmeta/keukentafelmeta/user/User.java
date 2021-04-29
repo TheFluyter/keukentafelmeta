@@ -1,14 +1,21 @@
 package nl.keukentafelmeta.keukentafelmeta.user;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 public class User {
-    private long id;
-    private String username;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
+    private @Id @GeneratedValue long id;
+    private @NotBlank String username;
+    private @NotBlank String firstName;
+    private @NotBlank String lastName;
+    private @NotBlank String email;
+    private @NotBlank String password;
+    private @NotBlank boolean loggedIn;
+
+    public User() {
+    }
 
     public User(String username, String firstName, String lastName, String email, String password) {
         this.username = username;
@@ -42,6 +49,10 @@ public class User {
         return password;
     }
 
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -60,6 +71,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
 
     @Override
@@ -89,6 +104,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", logged in='" + loggedIn + '\'' +
                 '}';
     }
 }
