@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: "KeukenTafelMeta API"
   description: "A web application for looking up Magic: The Gathering cards, make your own decklists and see decklists of friends."
-  version: '1.0.1'
+  version: '2.0'
 host: "keukentafelmeta.nl"
 basePath: "/api"
 tags:
@@ -17,10 +17,10 @@ paths:
         - "user"
       summary: "Create user"
       description: "Create a new account for an user with name, email, username and password."
-      operationId: "createUser" #Is this correct/necessary? When is this unique identifier used for the path?
       produces:
         - "application/json"
-        - "application/xml"
+      consumes:
+        - "application/json"
       parameters:
         - in: "body"
           name: "body"
@@ -39,10 +39,10 @@ paths:
         - "user"
       summary: "Logs user into the system"
       description: ""
-      operationId: "loginUser"
       produces:
         - "application/json"
-        - "application/xml"
+      consumes:
+        - "application/json"
       parameters:
         - name: "username"
           in: "query"
@@ -62,6 +62,12 @@ paths:
 definitions:
   User:
     type: "object"
+    required:
+      - "username"
+      - "firstName"
+      - "lastName"
+      - "email"
+      - "password"
     properties:
       username:
         type: "string"

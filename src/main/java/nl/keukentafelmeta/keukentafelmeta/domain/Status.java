@@ -1,4 +1,4 @@
-package nl.keukentafelmeta.keukentafelmeta.user;
+package nl.keukentafelmeta.keukentafelmeta.domain;
 
 public enum Status {
     SUCCESS,

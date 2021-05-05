@@ -1,0 +1,12 @@
+-- TODO look into errors
+
+--CREATE TABLE users
+--(
+-- username varchar(100) NOT NULL,
+-- userId varchar(11) NOT NULL ,
+-- firstName varchar(100) NOT NULL,
+-- lastName varchar(100) NOT NULL,
+-- email varchar(100) NOT NULL,
+-- password varchar(100) NOT NULL,
+-- PRIMARY KEY (userId)
+--);
