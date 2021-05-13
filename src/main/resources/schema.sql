@@ -1,4 +1,5 @@
 -- TODO look into errors
+-- TODO If we are putting it in the resources folder (could also be a normal folder), put some structure, like db -> schema or something
 
 --CREATE TABLE users
 --(
