@@ -1,16 +1,25 @@
 package nl.keukentafelmeta.keukentafelmeta.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
 @Table (name = "users")
 public class User {
-    private @Id @GeneratedValue long id;
+
+    @Id
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue (
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
+
+    private long id;
     private @NotBlank String username;
     private @NotBlank String firstName;
     private @NotBlank String lastName;
