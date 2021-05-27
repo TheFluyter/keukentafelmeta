@@ -55,4 +55,8 @@ public class UserDTO {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    public String getUsername() {
+        return username;
+    }
 }
