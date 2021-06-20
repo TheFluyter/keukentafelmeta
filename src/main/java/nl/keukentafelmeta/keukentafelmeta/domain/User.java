@@ -1,7 +1,10 @@
 package nl.keukentafelmeta.keukentafelmeta.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -20,12 +23,34 @@ public class User {
     )
 
     private long id;
-    private @NotBlank String username;
-    private @NotBlank String firstName;
-    private @NotBlank String lastName;
-    private @NotBlank String email;
-    private @NotBlank String password;
-    private @NotBlank boolean loggedIn;
+
+    @NotBlank(message = "Please provide a username")
+    @Size(min = 2, message = "Username should be at least two characters")
+    @Column(nullable = false)
+    private String username;
+
+    @NotNull(message = "Please provide an email")
+    @Email
+    @Column(nullable = false)
+    private String email;
+
+    @NotBlank(message = "Please provide a first name")
+    @Size(min = 2, message = "First name should be at least two characters")
+    @Column(nullable = false)
+    private String firstName;
+
+    @NotBlank(message = "Please provide a last name")
+    @Size(min = 2, message = "Last name should be at least two characters")
+    @Column(nullable = false)
+    private String lastName;
+
+    @NotNull(message = "Please provide a password")
+    @Size(min = 8, message = "Password must be at least 8 characters")
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private boolean loggedIn;
 
     public User() {
     }

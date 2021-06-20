@@ -11,6 +11,13 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Type;
 import java.util.List;
 
+
+/**
+ * This is the KeukenTafelMeta UserService.
+ *
+ * @author Rick de Ruiter
+ * @version %I%
+ */
 @Service
 public class UserService {
 
@@ -34,19 +41,18 @@ public class UserService {
     }
 
     /**
-     * Converts UserDTO to User object and saves the user to the database.
+     * Saves the user to the database if user doesn't already exists.
      *
      * @param userDTO user to save to the database
+     * @return UserDTO user that is saved to the database
      */
-    public void saveUser(UserDTO userDTO) {
-        System.out.println("User before mapping: " + userDTO);
-        User user = mapToEntity(userDTO);
-        System.out.println("User after mapping: " + user);
-        userRepository.save(user);
+    public UserDTO saveUser(UserDTO userDTO) {
+        User savedUser = userRepository.save(mapToEntity(userDTO));
+        return mapToDTO(savedUser);
     }
 
     /**
-     * Converts DTO to entity.
+     * Converts Entity to DTO.
      *
      * @param user User that needs conversion to DTO
      * @return UserDTO
@@ -56,7 +62,7 @@ public class UserService {
     }
 
     /**
-     * Converts Entity to DTO.
+     * Converts DTO to Entity.
      *
      * @param userDTO UserDTO that needs conversion to Entity
      * @return User
@@ -65,6 +71,12 @@ public class UserService {
         return mapper.map(userDTO, User.class);
     }
 
+    /**
+     * Converts a list of Entities to a list of DTO's.
+     *
+     * @param users users that need conversion.
+     * @return UserDTO
+     */
     private List<UserDTO> mapToDTOList(List<User> users) {
         Type listType = new TypeToken<List<UserDTO>>(){}.getType();
         return mapper.map(users, listType);

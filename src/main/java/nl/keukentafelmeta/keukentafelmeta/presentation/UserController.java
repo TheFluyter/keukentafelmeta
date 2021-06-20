@@ -4,6 +4,8 @@ import nl.keukentafelmeta.keukentafelmeta.domain.Status;
 import nl.keukentafelmeta.keukentafelmeta.dto.UserDTO;
 import nl.keukentafelmeta.keukentafelmeta.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,7 +34,7 @@ public class UserController {
      * @return Status status code
      */
     @PostMapping("/user")
-    public Status registerUser(@Valid @RequestBody UserDTO newUser) {
+    public ResponseEntity<UserDTO> registerUser(@Valid @RequestBody UserDTO newUser) {
         List<UserDTO> users = userService.getUsers();
 
         // TODO Look into the JPARepository methods (I've to do it myself as well)
@@ -40,16 +42,12 @@ public class UserController {
         for (UserDTO user : users) {
             if (user.equals(newUser)) {
                 //TODO use a LOGGER instead of System.out.println  (slf4j)
-                System.out.println("User already exists!");
-                return Status.USER_ALREADY_EXISTS;
+                return new ResponseEntity<>(newUser, HttpStatus.BAD_REQUEST);
             }
         }
 
-        userService.saveUser(newUser);
-        // TODO I think we need, or can, return a response to the front end in the form of a HttpStatus / ResponseEntity
-        // If we do this the method will be something like public ResponseEntity<> registerUser
-        // https://www.baeldung.com/spring-response-entity
-        return Status.SUCCESS;
+        UserDTO savedUser = userService.saveUser(newUser);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     @GetMapping("/user/login")
