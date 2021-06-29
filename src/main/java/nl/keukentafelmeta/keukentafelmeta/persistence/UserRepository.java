@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 //TODO Document your public API
 // Maybe we will use < USER, String> instead of Long for looking up stuff but we will see
 public interface UserRepository extends JpaRepository<User, Long> {
+
+    User findByUsername(String username);
+    User findByEmail(String email);
 }

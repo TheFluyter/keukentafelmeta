@@ -51,6 +51,16 @@ public class UserService {
         return mapToDTO(savedUser);
     }
 
+    public boolean doesUsernameExists(String username) {
+        User user = userRepository.findByUsername(username);
+        return user != null;
+    }
+
+    public boolean doesEmailExists(String username) {
+        User user = userRepository.findByEmail(username);
+        return user != null;
+    }
+
     /**
      * Converts Entity to DTO.
      *

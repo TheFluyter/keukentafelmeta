@@ -11,7 +11,7 @@ public class UserDTO {
 
     @NotBlank(message = "Please provide a username")
     @Size(min = 2, message = "Username should be at least two characters")
-    @JsonProperty("username")
+    @JsonProperty(value = "username", required = true)
     private String username;
 
     @NotBlank(message = "Please provide a first name")
