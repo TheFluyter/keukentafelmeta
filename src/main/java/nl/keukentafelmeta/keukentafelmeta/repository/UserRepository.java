@@ -1,6 +1,6 @@
-package nl.keukentafelmeta.keukentafelmeta.persistence;
+package nl.keukentafelmeta.keukentafelmeta.repository;
 
-import nl.keukentafelmeta.keukentafelmeta.domain.User;
+import nl.keukentafelmeta.keukentafelmeta.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

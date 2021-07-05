@@ -1,4 +1,4 @@
-package nl.keukentafelmeta.keukentafelmeta.presentation;
+package nl.keukentafelmeta.keukentafelmeta.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

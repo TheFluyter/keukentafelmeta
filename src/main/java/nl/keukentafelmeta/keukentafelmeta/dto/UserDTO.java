@@ -1,6 +1,7 @@
 package nl.keukentafelmeta.keukentafelmeta.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -9,7 +10,7 @@ import java.util.Objects;
 
 public class UserDTO {
 
-    @NotBlank(message = "Please provide a username")
+    @NotBlank(message = "Please provide a username USERDTO")
     @Size(min = 2, message = "Username should be at least two characters")
     @JsonProperty(value = "username", required = true)
     private String username;

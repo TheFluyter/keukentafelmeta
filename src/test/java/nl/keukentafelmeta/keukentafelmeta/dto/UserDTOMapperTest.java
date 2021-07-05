@@ -1,6 +1,6 @@
 package nl.keukentafelmeta.keukentafelmeta.dto;
 
-import nl.keukentafelmeta.keukentafelmeta.domain.User;
+import nl.keukentafelmeta.keukentafelmeta.entity.User;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 

@@ -1,8 +1,8 @@
 package nl.keukentafelmeta.keukentafelmeta.service;
 
-import nl.keukentafelmeta.keukentafelmeta.domain.User;
+import nl.keukentafelmeta.keukentafelmeta.entity.User;
 import nl.keukentafelmeta.keukentafelmeta.dto.UserDTO;
-import nl.keukentafelmeta.keukentafelmeta.persistence.UserRepository;
+import nl.keukentafelmeta.keukentafelmeta.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,13 +51,25 @@ public class UserService {
         return mapToDTO(savedUser);
     }
 
+    /**
+     * Checks if the given username is already present in the database.
+     *
+     * @param username
+     * @return boolean
+     */
     public boolean doesUsernameExists(String username) {
         User user = userRepository.findByUsername(username);
         return user != null;
     }
 
-    public boolean doesEmailExists(String username) {
-        User user = userRepository.findByEmail(username);
+    /**
+     * Checks if the given email is already present in the database.
+     *
+     * @param email
+     * @return boolean
+     */
+    public boolean doesEmailExists(String email) {
+        User user = userRepository.findByEmail(email);
         return user != null;
     }
 

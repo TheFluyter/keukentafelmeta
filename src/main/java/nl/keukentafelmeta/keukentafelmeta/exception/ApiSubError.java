@@ -1,4 +1,4 @@
-package nl.keukentafelmeta.keukentafelmeta.presentation;
+package nl.keukentafelmeta.keukentafelmeta.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

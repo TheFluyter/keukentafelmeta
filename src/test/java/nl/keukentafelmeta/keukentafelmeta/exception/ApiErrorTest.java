@@ -1,5 +1,6 @@
-package nl.keukentafelmeta.keukentafelmeta.presentation;
+package nl.keukentafelmeta.keukentafelmeta.exception;
 
+import nl.keukentafelmeta.keukentafelmeta.exception.ApiError;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import static org.junit.jupiter.api.Assertions.*;
