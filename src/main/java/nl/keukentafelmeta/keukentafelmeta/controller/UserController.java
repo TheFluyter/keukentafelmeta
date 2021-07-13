@@ -1,12 +1,17 @@
 package nl.keukentafelmeta.keukentafelmeta.controller;
 
 import nl.keukentafelmeta.keukentafelmeta.dto.UserDTO;
+import nl.keukentafelmeta.keukentafelmeta.entity.UserRequest;
+import nl.keukentafelmeta.keukentafelmeta.entity.UserResponse;
 import nl.keukentafelmeta.keukentafelmeta.service.UserService;
+import nl.keukentafelmeta.keukentafelmeta.util.JWTUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,6 +30,13 @@ public class UserController {
     private final Logger log = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
+    private JWTUtil util;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+
+    @Autowired
     UserController(UserService userService) {
         this.userService = userService;
     }
@@ -40,6 +52,7 @@ public class UserController {
     public ResponseEntity<Object> registerUser(@Valid @RequestBody UserDTO newUser) {
         // TODO Replace the doesUserNameExists and doesEmailExists by @Column(unique = "true")
         if (userService.doesUsernameExists(newUser.getUsername())) {
+
             log.info("Failed to save user \"{}\" to the database, because username is already taken", newUser.getUsername());
             return new ResponseEntity<>("User with username \"" + newUser.getUsername() + "\" already exists",
                     HttpStatus.CONFLICT);
@@ -55,15 +68,11 @@ public class UserController {
     }
 
     @GetMapping("/user/login")
-    // TODO We have to revise this section return a JWT token etc
-    public ResponseEntity<Object> loginUser(@Valid @RequestBody UserDTO userDTO) {
-        List<UserDTO> users = userService.getUsers();
+    public ResponseEntity<UserResponse> login(@Valid @RequestBody UserRequest request) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                request.getUsername(), request.getPassword()));
+        String token = util.generateToken(request.getUsername());
+        return ResponseEntity.ok(new UserResponse(token, "Token generated successfully!"));
 
-        for (UserDTO other : users) {
-            if (other.equals(userDTO)) {
-                return new ResponseEntity<>(HttpStatus.OK);
-            }
-        }
-        return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 }
