@@ -22,6 +22,25 @@ This project is created with
 * Look up Magic: the Gathering cards by name
 * Make your own decklist
 
+## Local
+This application can be build by running the command: ```mvn clean install```<br>
+This application can be start by running the command: ```mvn spring-boot:run```<br>
+
+The application uses an in memory database (H2) for testing purposes. 
+When running the application locally you can access the H2 databases as follows:
+
+Go to http://localhost:8080/h2-console
+JDBC URL: jdbc:h2:mem:keukentafelmeta
+User Name: overlord
+Password: keukentafelmeta
+
+On application start the data.sql (resources/data.sql) file will be loaded automatically in the H2 databse
+Tables are created automatically based on the User.java class.
+
+By design, the in-memory database is volatile, and data will be lost when we restart the application.
+This behaviour could be changed to file based if needed.
+
+
 ## Authors
 Back-end: Colin de Bruin, Rick de Ruiter
 Front-end: Tatsuya Kaneko

@@ -30,8 +30,8 @@ import java.util.Set;
 @Service
 public class UserService implements UserDetailsService {
 
-    private UserRepository userRepository;
-    private ModelMapper mapper;
+    private final UserRepository userRepository;
+    private final ModelMapper mapper;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -47,6 +47,7 @@ public class UserService implements UserDetailsService {
      *
      * @return List<UserDTO> all users available in database
      */
+    // TODO Bad practise to have unused code
     public List<UserDTO> getUsers() {
         List<User> users = userRepository.findAll();
         return mapToDTOList(users);

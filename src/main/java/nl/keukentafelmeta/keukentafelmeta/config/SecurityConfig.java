@@ -49,8 +49,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //Disabling CSRF as not using form based login
                 .csrf().disable()
                 .authorizeRequests()
+                // Diasbling Spring security for H2 database
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/user", "/user/login").permitAll()
                 .anyRequest().authenticated()
+                .and().headers().frameOptions().sameOrigin()
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint)

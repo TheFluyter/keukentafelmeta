@@ -18,6 +18,6 @@ class UserDTOMapperTest {
         // Added getter to DTO
         assertEquals(entity.getUsername(), userDTO.getUsername());
         // No getter for this in the dto so it's null
-        assertNull(entity.getFirstName());
+        assertNotNull(entity.getFirstName());
     }
 }
