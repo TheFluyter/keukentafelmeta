@@ -43,18 +43,7 @@ public class UserService implements UserDetailsService {
     }
 
     /**
-     * Finds all users available in the database and return a list of UserDTO.
-     *
-     * @return List<UserDTO> all users available in database
-     */
-    // TODO Bad practise to have unused code
-    public List<UserDTO> getUsers() {
-        List<User> users = userRepository.findAll();
-        return mapToDTOList(users);
-    }
-
-    /**
-     * Saves the user to the database after encrypting their password.
+     * Saves the user to the database with encrypted password.
      *
      * @param userDTO user to save to the database
      * @return UserDTO user that is saved to the database
@@ -63,48 +52,6 @@ public class UserService implements UserDetailsService {
         User user = mapToEntity(userDTO);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return mapToDTO(userRepository.save(user));
-    }
-
-    /**
-     * Returns User if user is present by the given username.
-     *
-     * @param username username to find user
-     * @return Optional<User>
-     */
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-
-    /**
-     * Returns User if user is present by given email.
-     *
-     * @param email email to find user
-     * @return Optional<User>
-     */
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-
-    /**
-     * Checks if the given username is already present in the database.
-     *
-     * @param username username to find
-     * @return boolean
-     */
-    public boolean doesUsernameExists(String username) {
-        Optional<User> user = userRepository.findByUsername(username);
-        return user.isPresent();
-    }
-
-    /**
-     * Checks if the given email is already present in the database.
-     *
-     * @param email
-     * @return boolean
-     */
-    public boolean doesEmailExists(String email) {
-        Optional<User> user = userRepository.findByEmail(email);
-        return user.isPresent();
     }
 
     /**

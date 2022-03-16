@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
   title: "KeukenTafelMeta API"
-  description: "A web application for looking up Magic: The Gathering cards, make your own decklists and see decklists of friends."
+  description: "A web application for looking up Magic: The Gathering cards, make your own deck lists and see deck lists of friends."
   version: '3.0'
 
 servers:
   - url: "https://www.keukentafelmeta.nl/api"
     description: "development server"
-
+" "
 security:
   - bearerAuth: []
 

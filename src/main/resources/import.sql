@@ -1,1 +1,0 @@
---INSERT INTO users (username, firstName, lastName, email, password) VALUES ('Babba', 'Alex', 'Zapantoulis', 'alex@email.com', 'wachtwoordAlex');

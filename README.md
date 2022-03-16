@@ -8,10 +8,11 @@
 * [Authors](https://github.com/TheFluyter/keukentafelmeta#authors)
 
 ## General information
-An web application for looking up Magic: The Gathering cards, make your own decklists and see decklists of friends.
+A web application for looking up Magic: The Gathering cards, make your own deck lists and see deck lists of friends.
 
 ## Technologies
 * Java
+* Spring Boot
 
 ## Launch
 This project is created with
@@ -20,7 +21,7 @@ This project is created with
 ## Features (in progress)
 * Make an account
 * Look up Magic: the Gathering cards by name
-* Make your own decklist
+* Make your own deck list
 
 ## Local
 This application can be build by running the command: ```mvn clean install```<br>
