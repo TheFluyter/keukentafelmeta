@@ -1,21 +1,21 @@
 package nl.keukentafelmeta.keukentafelmeta.controller;
 
+import javax.validation.Valid;
 import nl.keukentafelmeta.keukentafelmeta.dto.UserDTO;
 import nl.keukentafelmeta.keukentafelmeta.entity.UserRequest;
 import nl.keukentafelmeta.keukentafelmeta.entity.UserResponse;
 import nl.keukentafelmeta.keukentafelmeta.repository.UserRepository;
 import nl.keukentafelmeta.keukentafelmeta.service.UserService;
 import nl.keukentafelmeta.keukentafelmeta.util.JWTUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * This the KeukenTafelMeta RestController.
@@ -59,8 +59,8 @@ public class UserController {
             return new ResponseEntity<>("Email is already taken!", HttpStatus.BAD_REQUEST);
         }
 
-        UserDTO savedUser = userService.saveUser(newUser);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+        userService.saveUser(newUser);
+        return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
 
